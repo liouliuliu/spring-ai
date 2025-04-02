@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: spring-ai
+  ai:
+    moonshot:
+      api-key: sk-Oht4gXh3pAfDVC6ZM84Sk1x1JY8T8SzpEkmfFO5VQ7nF74hE
+      chat:
+        options:
+          model: moonshot-v1-8k
+          temperature: 0.3
+        base-url: https://api.moonshot.cn
+
+server:
+  port: 8080
