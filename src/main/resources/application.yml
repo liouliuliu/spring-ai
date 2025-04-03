@@ -9,6 +9,11 @@ spring:
           model: moonshot-v1-8k
           temperature: 0.3
         base-url: https://api.moonshot.cn
+    zhipuai:
+      api-key: a8dd689e8f4b41ce8e88e026fbeaffaa.Mb2Q96xih4reVRdu
+      chat:
+        options:
+          model: glm-4-plus
 
 server:
   port: 8080
