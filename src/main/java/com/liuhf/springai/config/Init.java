@@ -3,6 +3,10 @@ package com.liuhf.springai.config;
 import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
+import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.ai.moonshot.MoonshotChatModel;
 import org.springframework.ai.zhipuai.ZhiPuAiChatModel;
 import org.springframework.context.annotation.Bean;
@@ -26,8 +30,16 @@ public class Init {
     }
 
     @Bean("zhiPuAiChatClient")
-    public ChatClient zhiPuAiChatClient(){
+    public ChatClient zhiPuAiChatClient(ChatMemory chatMemory){
         return ChatClient.builder(zhiPuAiChatModel)
+                .defaultAdvisors(
+                        new SimpleLoggerAdvisor(),
+                        new MessageChatMemoryAdvisor(chatMemory))
                 .build();
+    }
+    
+    @Bean
+    public ChatMemory chatMemory(){
+        return new InMemoryChatMemory();
     }
 }
